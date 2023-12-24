@@ -1,11 +1,11 @@
 "use client";
-import { Button } from "@radix-ui/themes";
 import React, { useState } from "react";
-import apiClient from "./services/api-client";
+import apiClient from "../services/api-client";
 import { AxiosError } from "axios";
-import Spinner from "./components/Spinner";
+import Spinner from "./Spinner";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { Button } from "semantic-ui-react";
 
 const FileUploader = () => {
   const [file, setFile] = useState<File>();
@@ -49,7 +49,7 @@ const FileUploader = () => {
             }
           }}
         />
-        <Button size={"2"} type="submit" className="cursor-pointe">
+        <Button type="submit" className="cursor-pointer" color="blue">
           {isSubmitting ? "Processing File" : "Upload and Process File"}
           {isSubmitting && <Spinner />}
         </Button>

@@ -3,23 +3,34 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { InputAdornment } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-
-interface doc {
-  label: string;
-}
+import { useState } from "react";
 
 interface Props {
-  docList: doc[];
+  fileNames: string[];
+  setFileName: (fileName: string) => void;
 }
 
-const FileSearcher = ({ docList }: Props) => {
+const FileSearcher = ({ fileNames, setFileName }: Props) => {
+  const [value, setValue] = useState<string | null>(fileNames[0]);
+  const [inputValue, setInputValue] = useState<string | undefined>(
+    fileNames[0]
+  );
+
   return (
     <Autocomplete
+      value={value}
+      onChange={(event: any, newValue: string | null) => {
+        setValue(newValue);
+      }}
+      inputValue={inputValue}
+      onInputChange={(event: any, newInputValue) => {
+        setInputValue(newInputValue);
+        setFileName(newInputValue);
+      }}
       className="rounded-lg border dark:border-gray-600 dark:bg-gray-100 dark:text-gray-400 w-full"
       disablePortal
       id="combo-box-demo"
-      options={docList}
-      //   sx={{ width: 800 }}
+      options={fileNames}
       renderInput={(params) => (
         <TextField
           size="small"
