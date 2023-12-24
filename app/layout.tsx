@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Theme accentColor="blue">
-          <main className="p-5">
+          <main>
             <Container className="h-screen">{children}</Container>
           </main>
         </Theme>
