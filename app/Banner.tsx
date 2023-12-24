@@ -8,7 +8,7 @@ const Banner = () => {
     <Flex className="justify-center items-center" direction="column">
       <Image
         src="/assets/RAG-banner.jpg"
-        width={600}
+        width={800}
         height={500}
         alt="Picture of the author"
       />
