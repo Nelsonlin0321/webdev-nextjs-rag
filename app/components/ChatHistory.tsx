@@ -9,7 +9,7 @@ interface Props {
 }
 
 const ChatHistory = ({ chatRecords }: Props) => {
-  const [activeIndex, setActiveIndex] = useState(chatRecords.length);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <Accordion fluid styled>
@@ -29,7 +29,9 @@ const ChatHistory = ({ chatRecords }: Props) => {
             {message.question}
             <div>
               <Label color="orange" ribbon="right">
-                {message.file_name}
+                <p style={{ maxWidth: 256 }} className="truncate">
+                  {message.file_name}
+                </p>
               </Label>
             </div>
           </Accordion.Title>
