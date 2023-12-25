@@ -1,15 +1,15 @@
 import React from "react";
 import Image from "next/image";
-import { Heading, Text } from "@radix-ui/themes";
+import { Text } from "@radix-ui/themes";
 import { Flex } from "@radix-ui/themes";
 
 const Banner = () => {
   return (
     <>
       <Image
-        src="/assets/RAG-banner.jpg"
-        width={500}
-        height={500}
+        src="/assets/RAG-banner.png"
+        width="800"
+        height="800"
         alt="Picture of the author"
       />
       <Text className="italic">

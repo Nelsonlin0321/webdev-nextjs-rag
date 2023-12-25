@@ -13,7 +13,7 @@ export default async function Home() {
     <Flex
       className="justify-center items-center mb-10"
       direction="column"
-      align="start"
+      // align="start"
       gap={"4"}
     >
       <Banner />
