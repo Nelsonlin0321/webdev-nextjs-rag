@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SelectDocsAsk from "./SelectDocsAsk";
 import ChatHistory from "./ChatHistory";
 
@@ -16,6 +16,21 @@ export interface chatRecord {
 
 export const Chatbot = ({ fileNames }: Props) => {
   const [chatRecords, setChatRecords] = useState<chatRecord[]>([]);
+
+  useEffect(() => {
+    const savedChatRecords = localStorage.getItem("chatRecords");
+    if (savedChatRecords) {
+      const parsedChatRecords = JSON.parse(savedChatRecords);
+      if (parsedChatRecords.length > 0) {
+        setChatRecords(parsedChatRecords);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("chatRecords", JSON.stringify(chatRecords));
+  }, [chatRecords]);
+
   return (
     <>
       <SelectDocsAsk
