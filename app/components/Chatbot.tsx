@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import SelectDocsAsk from "./SelectDocsAsk";
 import ChatHistory from "./ChatHistory";
+import { Button } from "semantic-ui-react";
 
 interface Props {
   fileNames: string[];
@@ -39,6 +40,7 @@ export const Chatbot = ({ fileNames }: Props) => {
         chatRecords={chatRecords}
       />
       <ChatHistory chatRecords={chatRecords} />
+      <Button onClick={() => setChatRecords([])}>Clear History</Button>
     </>
   );
 };

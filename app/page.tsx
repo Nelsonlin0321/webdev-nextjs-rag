@@ -3,6 +3,7 @@ import { Flex } from "@radix-ui/themes";
 import Banner from "./components/Banner";
 import FileUploader from "./components/FileUploader";
 import { Chatbot } from "./components/Chatbot";
+import { Button } from "semantic-ui-react";
 
 export default async function Home() {
   const documents = await prisma.document.findMany();
@@ -12,6 +13,7 @@ export default async function Home() {
     <Flex
       className="justify-center items-center mb-10"
       direction="column"
+      align="start"
       gap={"4"}
     >
       <Banner />
