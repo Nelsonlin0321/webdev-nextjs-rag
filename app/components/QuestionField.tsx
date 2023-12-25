@@ -67,7 +67,10 @@ const QuestionField = ({
             Please write down your question related to selected PDF Document
           </span>
           <TextField.Root className="mb-2">
-            <TextField.Input placeholder="Question:" ref={questionRef} />
+            <TextField.Input
+              placeholder="Example Question: What are steps to take when finding projects to build your AI experience ?"
+              ref={questionRef}
+            />
           </TextField.Root>
           <Button type="submit" className="cursor-pointer" color="blue">
             Ask

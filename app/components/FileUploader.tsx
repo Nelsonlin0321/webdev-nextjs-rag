@@ -15,6 +15,10 @@ const FileUploader = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!file) return;
+    if (!file.name.endsWith(".pdf")) {
+      toast.error("Only PDF document supported", { duration: 1000 });
+      return;
+    }
     setSubmitting(true);
     try {
       const data = new FormData();
