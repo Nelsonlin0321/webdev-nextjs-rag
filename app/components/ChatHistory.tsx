@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Accordion, Icon, Label } from "semantic-ui-react";
 import { chatRecord } from "./Chatbot";
 import { Text } from "@radix-ui/themes";
@@ -10,6 +10,10 @@ interface Props {
 
 const ChatHistory = ({ chatRecords }: Props) => {
   const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [chatRecords]);
 
   return (
     <Accordion fluid styled>
