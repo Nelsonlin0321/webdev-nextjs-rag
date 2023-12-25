@@ -26,3 +26,10 @@ npm run dev
 
 ## Backend
 Github: https://github.com/Nelsonlin0321/webdev-rag-backend-api
+
+## Build Docker
+```shell
+image_name=rag-nextjs-app
+docker build -t ${image_name}:latest -f ./Dockerfile . --platform linux/arm64/v8
+docker run --env-file docker.env -p 3000:3000 -it --rm  ${image_name}:latest --name ${image_name}
+```
