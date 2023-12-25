@@ -53,7 +53,12 @@ const FileUploader = () => {
             }
           }}
         />
-        <Button type="submit" className="cursor-pointer" color="blue">
+        <Button
+          type="submit"
+          className="cursor-pointer"
+          color="blue"
+          disabled={isSubmitting}
+        >
           {isSubmitting ? "Processing File" : "Upload and Process File"}
           {isSubmitting && <Spinner />}
         </Button>

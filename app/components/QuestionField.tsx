@@ -72,8 +72,13 @@ const QuestionField = ({
               ref={questionRef}
             />
           </TextField.Root>
-          <Button type="submit" className="cursor-pointer" color="blue">
-            Ask
+          <Button
+            type="submit"
+            className="cursor-pointer"
+            color="blue"
+            disabled={isLoading}
+          >
+            {isLoading ? "Thinking..." : "Ask"}
             {isLoading && <Spinner />}
           </Button>
         </div>
