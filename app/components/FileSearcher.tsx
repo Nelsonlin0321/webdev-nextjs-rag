@@ -27,7 +27,7 @@ const FileSearcher = ({ fileNames, setFileName }: Props) => {
         setInputValue(newInputValue);
         setFileName(newInputValue);
       }}
-      className="rounded-lg border dark:border-gray-600 dark:bg-gray-100 dark:text-gray-400 w-full"
+      className="rounded-lg border w-full"
       disablePortal
       id="combo-box-demo"
       options={fileNames}

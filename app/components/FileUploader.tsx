@@ -40,7 +40,7 @@ const FileUploader = () => {
     <div className="w-full">
       <form onSubmit={onSubmit}>
         <input
-          className="mb-2 block w-full cursor-pointer rounded-lg border dark:border-gray-600 dark:bg-gray-100 dark:text-gray-400"
+          className="mb-2 block w-full cursor-pointer rounded-lg border dark:border-gray-300"
           type="file"
           name="file"
           onChange={(e) => {
