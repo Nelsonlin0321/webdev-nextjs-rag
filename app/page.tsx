@@ -3,7 +3,6 @@ import { Flex } from "@radix-ui/themes";
 import Banner from "./components/Banner";
 import FileUploader from "./components/FileUploader";
 import { Chatbot } from "./components/Chatbot";
-import { Button } from "semantic-ui-react";
 
 export default async function Home() {
   const documents = await prisma.document.findMany();
@@ -22,3 +21,5 @@ export default async function Home() {
     </Flex>
   );
 }
+
+export const dynamic = "force-dynamic";
