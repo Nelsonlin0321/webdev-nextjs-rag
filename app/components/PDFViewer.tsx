@@ -8,10 +8,16 @@ import "./PDFViewer.css";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
-const PDFViewer = ({ pdfUrl }: { pdfUrl: string }) => {
+interface Props {
+  pdfUrl: string;
+  setNumPages: (page: number) => void;
+  pageNumber: number;
+}
+
+const PDFViewer = ({ pdfUrl, setNumPages, pageNumber }: Props) => {
   return (
-    <Document file={pdfUrl} className="">
-      <Page pageNumber={3} />
+    <Document file={pdfUrl} onLoadSuccess={(pdf) => setNumPages(pdf.numPages)}>
+      <Page pageNumber={pageNumber} />
     </Document>
   );
 };

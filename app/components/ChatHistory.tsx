@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Accordion, Icon, Label } from "semantic-ui-react";
 import { chatRecord } from "./Chatbot";
 import { Flex, Text, Button } from "@radix-ui/themes";
+import { PDFDocumentProxy } from "pdfjs-dist";
 import dynamic from "next/dynamic";
 import {
   ChevronLeftIcon,
@@ -21,8 +22,13 @@ interface Props {
 
 const ChatHistory = ({ chatRecords }: Props) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const currentPage: number = 3;
-  const pageCount = 10;
+  const [numPages, setNumPages] = useState<number | null>(null);
+  const [currentPage, changePage] = useState<number>(1);
+
+  const onDocumentLoadSuccess = (pdf: PDFDocumentProxy) => {
+    setNumPages(pdf.numPages);
+  };
+
   useEffect(() => {
     setActiveIndex(0);
   }, [chatRecords]);
@@ -56,41 +62,50 @@ const ChatHistory = ({ chatRecords }: Props) => {
             <Text className="text-gray-800 mb-4 whitespace-pre-line">
               {message.answer}
             </Text>
-            <PDFViewer pdfUrl="https://d2gewc5xha837s.cloudfront.net/rag-documents/SUNY+RF+-+General+Investment+Policy+and+Guidelines.pdf" />
-            <div style={{ margin: "0 auto" }}>
-              <Flex gap="2">
+            <PDFViewer
+              pdfUrl="https://d2gewc5xha837s.cloudfront.net/rag-documents/SUNY+RF+-+General+Investment+Policy+and+Guidelines.pdf"
+              setNumPages={setNumPages}
+              pageNumber={currentPage}
+            />
+            {numPages && (
+              <Flex align="center" gap="2">
                 <Text size="2">
-                  page {currentPage} of {pageCount}
+                  page {currentPage} of {numPages}
                 </Text>
-                <Button color="gray" variant="soft" disabled={currentPage == 1}>
+                <Button
+                  color="gray"
+                  variant="soft"
+                  disabled={currentPage == 1}
+                  onClick={() => changePage(1)}
+                >
                   <DoubleArrowLeftIcon />
                 </Button>
                 <Button
                   color="gray"
                   variant="soft"
                   disabled={currentPage == 1}
-                  // onClick={() => changePage(currentPage - 1)}
+                  onClick={() => changePage(currentPage - 1)}
                 >
                   <ChevronLeftIcon />
                 </Button>
                 <Button
                   color="gray"
                   variant="soft"
-                  disabled={currentPage >= pageCount}
-                  // onClick={() => changePage(currentPage + 1)}
+                  disabled={currentPage >= numPages}
+                  onClick={() => changePage(currentPage + 1)}
                 >
                   <ChevronRightIcon />
                 </Button>
                 <Button
                   color="gray"
                   variant="soft"
-                  disabled={currentPage >= pageCount}
-                  // onClick={() => changePage(pageCount)}
+                  disabled={currentPage >= numPages}
+                  onClick={() => changePage(numPages)}
                 >
                   <DoubleArrowRightIcon />
                 </Button>
               </Flex>
-            </div>
+            )}
           </Accordion.Content>
         </div>
       ))}
