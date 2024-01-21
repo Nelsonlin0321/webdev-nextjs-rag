@@ -13,17 +13,20 @@ export interface chatRecord {
   file_name: string;
   answer: string;
   uuid: string;
+  page_number: number;
 }
 
 export const Chatbot = ({ fileNames }: Props) => {
   const initChatRecords = [
     {
+      context: "total population in Hong Kong Island",
       question:
         "What is the percentage of total population in Hong Kong Island ? ",
       file_name: "Hong Kong Fact Sheets - Population.pdf",
       answer:
-        "At mid-2014, the population in Hong Kong Island accounted for 17.5% of the total population in Hong Kong.",
-      uuid: "d1118d92-2ac5-4ba1-9735-6617578b01ac",
+        "Answer: 17.5% of the total population in Hong Kong is in Hong Kong Island. Page Number->1.",
+      page_number: 1,
+      uuid: "77fa6513-8224-4bbd-a7aa-3ea89ed5d4cd",
     },
   ];
 
