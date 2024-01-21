@@ -2,7 +2,7 @@
 const nextConfig = {
     async headers() {
         return [{
-            source: "/api/:path*",
+            source: "/:path*",
             headers: [
                 // Allow for specific domains to have access or * for all
                 {
@@ -23,7 +23,12 @@ const nextConfig = {
                 },
             ],
         }]
-    }
+    },
+
+    webpack: (config) => {
+        config.resolve.alias.canvas = false; return config
+    },
+
 }
 
 module.exports = nextConfig

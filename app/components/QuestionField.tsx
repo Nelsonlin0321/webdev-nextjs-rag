@@ -1,5 +1,5 @@
 "use client";
-import { TextField } from "@radix-ui/themes";
+import { TextField, Text, Heading } from "@radix-ui/themes";
 import { useRef, useState } from "react";
 import { Button } from "semantic-ui-react";
 import toast, { Toaster } from "react-hot-toast";
@@ -22,8 +22,13 @@ const QuestionField = ({
   setChatRecords,
 }: Props) => {
   const questionRef = useRef<HTMLInputElement>(null);
+  const contextRef = useRef<HTMLInputElement>(null);
   const [isLoading, setLoading] = useState(false);
-  const submitData = { question: "", file_name: fileName };
+  const submitData: {
+    question: string;
+    file_name: string;
+    context?: null | string;
+  } = { question: "", file_name: fileName };
 
   return (
     <div className="w-full">
@@ -31,7 +36,7 @@ const QuestionField = ({
         onSubmit={async (event) => {
           event.preventDefault();
 
-          if (questionRef.current != null) {
+          if (questionRef.current) {
             if (questionRef.current.value.split(" ").length < 3) {
               toast.error("The question requires at least 3 words");
               return;
@@ -42,6 +47,10 @@ const QuestionField = ({
               return;
             }
             submitData.question = questionRef.current.value;
+            if (contextRef.current) {
+              submitData.context = contextRef.current.value;
+            }
+
             setLoading(true);
             try {
               await apiClient
@@ -63,15 +72,25 @@ const QuestionField = ({
         }}
       >
         <div>
-          <span>
-            Please write down your question related to selected PDF Document
-          </span>
+          <Heading size={"2"}>
+            Context for better searching the relevant content [Optional]
+          </Heading>
           <TextField.Root className="mb-2">
             <TextField.Input
-              placeholder="Example Question: What are steps to take when finding projects to build your AI experience ?"
+              placeholder="Context: Asset allocation with a duration"
+              ref={contextRef}
+            />
+          </TextField.Root>
+          <Heading size={"2"}>
+            Your question related to selected PDF Document
+          </Heading>
+          <TextField.Root className="mb-2">
+            <TextField.Input
+              placeholder="Question: Given the criteria, if the percentage of the portfolio with a duration longer than 7 years is less than 20%, answer me Yes or No, does this document satisfy this criteria?"
               ref={questionRef}
             />
           </TextField.Root>
+
           <Button
             type="submit"
             className="cursor-pointer"
