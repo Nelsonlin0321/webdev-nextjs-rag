@@ -11,8 +11,8 @@ const Banner = () => {
         height="300"
         alt="Picture of the author"
       />
-      <Heading className="italic">
-        Empower your organization's Document Intelligence with RAG
+      <Heading>
+        <span>Empower your organizations Document Intelligence with RAG</span>
       </Heading>
       <Text>Upload your documents and Talk to them with RAG!</Text>
     </>
