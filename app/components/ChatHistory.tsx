@@ -1,16 +1,9 @@
 "use client";
+import { Text } from "@radix-ui/themes";
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { Accordion, Icon, Label } from "semantic-ui-react";
 import { chatRecord } from "./Chatbot";
-import { Flex, Text, Button } from "@radix-ui/themes";
-import { PDFDocumentProxy } from "pdfjs-dist";
-import dynamic from "next/dynamic";
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  DoubleArrowLeftIcon,
-  DoubleArrowRightIcon,
-} from "@radix-ui/react-icons";
 
 const PDFViewer = dynamic(() => import("./PDFViewer"), {
   ssr: false,
@@ -22,8 +15,6 @@ interface Props {
 
 const ChatHistory = ({ chatRecords }: Props) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [numPages, setNumPages] = useState<number | null>(null);
-  const [currentPage, changePage] = useState<number>(1);
 
   useEffect(() => {
     setActiveIndex(0);
@@ -60,48 +51,8 @@ const ChatHistory = ({ chatRecords }: Props) => {
             </Text>
             <PDFViewer
               pdfUrl={`https://d2gewc5xha837s.cloudfront.net/rag-documents/${message.file_name}`}
-              setNumPages={setNumPages}
-              pageNumber={currentPage}
+              pageNumber={message.page_number}
             />
-            {numPages && (
-              <Flex align="center" gap="2">
-                <Text size="2">
-                  page {currentPage} of {numPages}
-                </Text>
-                <Button
-                  color="gray"
-                  variant="soft"
-                  disabled={currentPage == 1}
-                  onClick={() => changePage(1)}
-                >
-                  <DoubleArrowLeftIcon />
-                </Button>
-                <Button
-                  color="gray"
-                  variant="soft"
-                  disabled={currentPage == 1}
-                  onClick={() => changePage(currentPage - 1)}
-                >
-                  <ChevronLeftIcon />
-                </Button>
-                <Button
-                  color="gray"
-                  variant="soft"
-                  disabled={currentPage >= numPages}
-                  onClick={() => changePage(currentPage + 1)}
-                >
-                  <ChevronRightIcon />
-                </Button>
-                <Button
-                  color="gray"
-                  variant="soft"
-                  disabled={currentPage >= numPages}
-                  onClick={() => changePage(numPages)}
-                >
-                  <DoubleArrowRightIcon />
-                </Button>
-              </Flex>
-            )}
           </Accordion.Content>
         </div>
       ))}
