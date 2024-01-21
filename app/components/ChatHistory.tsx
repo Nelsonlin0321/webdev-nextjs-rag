@@ -25,10 +25,6 @@ const ChatHistory = ({ chatRecords }: Props) => {
   const [numPages, setNumPages] = useState<number | null>(null);
   const [currentPage, changePage] = useState<number>(1);
 
-  const onDocumentLoadSuccess = (pdf: PDFDocumentProxy) => {
-    setNumPages(pdf.numPages);
-  };
-
   useEffect(() => {
     setActiveIndex(0);
   }, [chatRecords]);
@@ -63,7 +59,7 @@ const ChatHistory = ({ chatRecords }: Props) => {
               {message.answer}
             </Text>
             <PDFViewer
-              pdfUrl="https://d2gewc5xha837s.cloudfront.net/rag-documents/SUNY+RF+-+General+Investment+Policy+and+Guidelines.pdf"
+              pdfUrl={`https://d2gewc5xha837s.cloudfront.net/rag-documents/${message.file_name}`}
               setNumPages={setNumPages}
               pageNumber={currentPage}
             />
