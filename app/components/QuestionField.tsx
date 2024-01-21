@@ -73,7 +73,7 @@ const QuestionField = ({
       >
         <div>
           <Heading size={"2"}>
-            Question's context for better searching the relevant content
+            Question context for better searching the relevant content
             [Optional]
           </Heading>
           <TextField.Root className="mb-2">
