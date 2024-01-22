@@ -23,7 +23,6 @@ interface Props {
 
 const PDFViewer = ({ pdfUrl, pageNumber }: Props) => {
   const [numPages, setNumPages] = useState<number | null>(null);
-  console.log(pageNumber);
   const [currentPage, changePage] = useState<number>(pageNumber);
 
   return (
@@ -34,9 +33,12 @@ const PDFViewer = ({ pdfUrl, pageNumber }: Props) => {
           setNumPages(pdf.numPages);
           changePage(pageNumber);
         }}
-        onLoadError={(error) => console.log(error)}
+        onLoadError={(error) => {
+          console.log(`Loading Page Error: ${error}`);
+          setNumPages(null);
+        }}
         loading={<Spinner />}
-        error={<Text className=" mt-2">This PDF is not available</Text>}
+        error={<Text className="mt-2">This PDF is not available</Text>}
       >
         <Page
           pageNumber={currentPage}
