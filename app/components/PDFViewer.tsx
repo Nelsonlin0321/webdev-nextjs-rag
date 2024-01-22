@@ -35,10 +35,14 @@ const PDFViewer = ({ pdfUrl, pageNumber }: Props) => {
         loading={<Spinner />}
         error={""}
       >
-        <Page pageNumber={currentPage} className={"PDFPage"} />
+        <Page
+          pageNumber={currentPage}
+          className={"PDFPage"}
+          renderTextLayer={false}
+        />
       </Document>
       {numPages && (
-        <Flex align="center" gap="2">
+        <Flex align="center" gap="2" className="z-50">
           <Text size="2">
             page {currentPage} of {numPages}
           </Text>
