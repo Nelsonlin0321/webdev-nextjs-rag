@@ -2,6 +2,10 @@
     margin: 0 auto;
 }
 
+.PDFPage {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 25px;
+    }
 
 .PDFPage > canvas {
     max-width: 100%;
