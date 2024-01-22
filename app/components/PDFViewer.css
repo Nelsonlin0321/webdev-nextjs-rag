@@ -5,6 +5,7 @@
 .PDFPage {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
     margin-bottom: 25px;
+    margin-top: 25px;
     }
 
 .PDFPage > canvas {

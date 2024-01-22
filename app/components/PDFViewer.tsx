@@ -30,10 +30,13 @@ const PDFViewer = ({ pdfUrl, pageNumber }: Props) => {
     <>
       <Document
         file={pdfUrl}
-        onLoadSuccess={(pdf) => setNumPages(pdf.numPages)}
+        onLoadSuccess={(pdf) => {
+          setNumPages(pdf.numPages);
+          changePage(pageNumber);
+        }}
         onLoadError={(error) => console.log(error)}
         loading={<Spinner />}
-        error={""}
+        error={<Text className=" mt-2">This PDF is not available</Text>}
       >
         <Page
           pageNumber={currentPage}
