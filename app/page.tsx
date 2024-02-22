@@ -9,15 +9,17 @@ export default async function Home() {
   const fileNames = documents.map(({ id, fileName }) => fileName);
 
   return (
-    <Flex
-      className="justify-center items-center mb-10"
-      direction="column"
-      gap={"4"}
-    >
-      <Banner />
-      <FileUploader />
-      <Chatbot fileNames={fileNames} />
-    </Flex>
+    <div>
+      <Flex
+        className="justify-center items-center mb-10"
+        direction="column"
+        gap={"4"}
+      >
+        <Banner />
+        <FileUploader />
+        <Chatbot fileNames={fileNames} />
+      </Flex>
+    </div>
   );
 }
 
