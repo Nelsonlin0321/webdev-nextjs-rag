@@ -59,7 +59,7 @@ const FileUploader = () => {
           color="blue"
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Processing File" : "Upload and Process File"}
+          {isSubmitting ? "Processing File" : "Upload and Process PDF"}
           {isSubmitting && <Spinner />}
         </Button>
       </form>
