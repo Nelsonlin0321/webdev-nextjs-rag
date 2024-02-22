@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Theme accentColor="blue">
           <main>
-            <Container className="w-screen min-h-screen pl-20 pr-20 pt-5 bg-gradient-to-tl from-yellow-100 to-pink-100">
+            <Container className="w-screen min-h-screen p-3 bg-gradient-to-tl from-yellow-100 to-pink-100">
               {children}
             </Container>
           </main>
