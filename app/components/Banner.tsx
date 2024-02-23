@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import { Heading, Text } from "@radix-ui/themes";
 
 const Banner = () => {
@@ -15,10 +15,10 @@ const Banner = () => {
         size="7"
         // className="bg-gradient-to-r via-gray-600 to-blue-800 bg-clip-text text-transparent"
       >
-        Empower your organizations Document Intelligence with RAG
+        Empower Your Organizations Document Intelligence with RAG
       </Heading>
       <Text className="font-semibold">
-        Upload your PDF and Talk to them with RAG!
+        Upload your PDF and Talk to them with AI!
       </Text>
     </>
   );

@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "RAG App",
-  description: "",
+  description: "Empower Your Organizations Document Intelligence with RAG",
 };
 
 export default function RootLayout({
