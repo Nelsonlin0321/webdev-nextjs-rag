@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import "semantic-ui-css/semantic.min.css";
 import { Container, Theme } from "@radix-ui/themes";
-
+import Head from "next/head";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -19,6 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Head>
+        <meta name="viewport" content="user-scalable=no" />
+      </Head>
       <body className={inter.className}>
         <Theme accentColor="blue">
           <main>
